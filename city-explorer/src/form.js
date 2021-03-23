@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Alert from './alert';
 
 
 class FormInput extends React.Component{
@@ -14,7 +15,8 @@ class FormInput extends React.Component{
         searchQuery: '',
         imgSrc: '',
         displayResults: false,
-        hasError: false
+        hasError: false,
+        message: ''
       }
   }
 
@@ -31,8 +33,14 @@ class FormInput extends React.Component{
       imgSrc: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${locationArray[0].lat},${locationArray[0].lon}&zoom=11&size=1200x900` 
     });
     }catch(err) {
-      if(!alert(err)){window.location.reload()};
-    }
+      if(err){
+        this.setState({
+          hasError: true, message: err.message
+        });
+        
+        console.log('error', this.state.message);
+      }
+    }  
   }
 
   render(){
@@ -46,7 +54,7 @@ class FormInput extends React.Component{
             <Form.Text  width={350}className="text-muted">
             </Form.Text>
           </Form.Group>
-          <Button variant="outline-info" type="submit">
+          <Button variant="info" type="submit">
             EXPLORE!
           </Button>
         </Form>
@@ -55,6 +63,15 @@ class FormInput extends React.Component{
             <h2 className="city">{this.state.location.display_name}</h2>
             <h3 className="lat-lon">{this.state.location.lat}{this.state.location.lon}</h3>
             <img src={this.state.imgSrc} alt="Map view of city"/>
+          </>
+        }
+        {this.state.hasError &&
+          <>
+            <Alert
+              handleClose={() => this.setState({hasError:false}) (window.location.reload())}
+              message={this.state.message}
+              hasError={this.state.hasError}
+            />
           </>
         }
       </>
