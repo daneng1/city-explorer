@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.header {
+  margin-top: 100px;
+}
+
+.form-control {
+  width: 300px;
+}
+
+.city {
+  margin-top: 40px;
+}
+
+.lat-lon {
+  margin-top: 10px;
+}
