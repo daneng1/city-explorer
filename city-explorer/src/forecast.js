@@ -14,8 +14,8 @@ class Forecast extends React.Component{
   }
 
   componentDidMount = async() => {
-    const SERVER = 'http://localhost:3001';
-    const weather = await axios.get(`${SERVER}/weather`);
+    const SERVER = 'https://city-explorer-dan.herokuapp.com/';
+    const weather = await axios.get(`${SERVER}weather/`);
     const weatherArray = weather.data;
     console.log(weatherArray);
     console.log("newArray=", weather.data);
