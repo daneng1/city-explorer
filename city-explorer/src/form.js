@@ -5,6 +5,8 @@ import axios from 'axios';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Alert from './alert';
+import Map from './map';
+import Forecast from './forecast';
 
 
 class FormInput extends React.Component{
@@ -58,19 +60,21 @@ class FormInput extends React.Component{
             EXPLORE!
           </Button>
         </Form>
-        {this.state.displayResults &&
-          <>
-            <h2 className="city">{this.state.location.display_name}</h2>
-            <h3 className="lat-lon">{this.state.location.lat}{this.state.location.lon}</h3>
-            <img src={this.state.imgSrc} alt="Map view of city"/>
-          </>
-        }
+        <Forecast />
         {this.state.hasError &&
           <>
             <Alert
               handleClose={() => this.setState({hasError:false}) (window.location.reload())}
               message={this.state.message}
-              hasError={this.state.hasError}
+            />
+          </>
+        }
+        {this.state.displayResults &&
+          <>
+            <h2 className="city">{this.state.location.display_name}</h2>
+            <h3 className="lat-lon">{this.state.location.lat}{this.state.location.lon}</h3>
+            <Map 
+              imgSrc={this.state.imgSrc}
             />
           </>
         }
