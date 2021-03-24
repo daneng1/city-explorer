@@ -56,7 +56,7 @@ class FormInput extends React.Component{
             <Form.Text  width={350}className="text-muted">
             </Form.Text>
           </Form.Group>
-          <Button variant="info" type="submit">
+          <Button className="form-button" variant="info" type="submit">
             EXPLORE!
           </Button>
         </Form>
@@ -65,6 +65,7 @@ class FormInput extends React.Component{
           <>
             <Alert
               handleClose={() => this.setState({hasError:false}) (window.location.reload())}
+              show={this.state.hasError}
               message={this.state.message}
             />
           </>

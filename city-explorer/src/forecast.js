@@ -3,6 +3,7 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
+import ListGroup from 'react-bootstrap/ListGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Forecast extends React.Component{
@@ -34,9 +35,13 @@ class Forecast extends React.Component{
             </Card.Header>
             <Accordion.Collapse eventKey="0">
               <Card.Body>{this.state.list.map((value, key) => (
-                <div key={key}>
-                  <h4>{value.date}  {value.desc}</h4>
-                </div>
+                <ListGroup key={key}>
+                  <ListGroup.Item variant="info">{value.date}  {value.desc}</ListGroup.Item>
+                </ListGroup>
+                
+                // <div key={key}>
+                //   <h4>{value.date}  {value.desc}</h4>
+                // </div>
                 ))}
               </Card.Body>
             </Accordion.Collapse>

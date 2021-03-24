@@ -8,15 +8,16 @@ class Alert extends React.Component{
 
     return(
       <>
-        <Modal.Dialog animation="true" autoFocus="true" variant="danger">
-          <Modal.Header onHide={this.props.handleClose} closeButton>
-            <Modal.Title>{this.props.message}</Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-            <p>Please try again</p>
-          </Modal.Body>
-        </Modal.Dialog>
+        <Modal size={'sm'} show={this.props.show} onHide={this.props.handleClose}>
+          <Modal.Dialog animation="true" autoFocus="true" variant="danger">
+            <Modal.Header  closeButton>
+              <Modal.Title>{this.props.message}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p>Please try again</p>
+            </Modal.Body>
+          </Modal.Dialog>
+        </Modal>
       </>
     );
   }
