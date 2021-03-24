@@ -43,6 +43,7 @@
 
 .form-control {
   width: 300px;
+  justify-content: center;
 }
 
 .city {
@@ -51,4 +52,8 @@
 
 .lat-lon {
   margin-top: 10px;
+}
+
+.form-button {
+  margin: 15px;
 }
