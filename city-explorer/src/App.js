@@ -5,12 +5,7 @@ import FormInput from './form';
 
 
 class City extends React.Component {
-  constructor(props){
-    super(props)
-      this.state={
 
-    }
-  }
   render() {
     return(
       <>

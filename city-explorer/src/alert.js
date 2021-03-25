@@ -8,7 +8,7 @@ class Alert extends React.Component{
 
     return(
       <>
-        <Modal size={'sm'} show={this.props.show} onHide={this.props.handleClose}>
+        <Modal size={'m'} show={this.props.show} onHide={this.props.handleClose}>
           <Modal.Dialog animation="true" autoFocus="true" variant="danger">
             <Modal.Header  closeButton>
               <Modal.Title>{this.props.message}</Modal.Title>
