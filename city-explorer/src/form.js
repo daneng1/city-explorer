@@ -5,7 +5,6 @@ import axios from 'axios';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Alert from './alert';
-
 import Map from './map';
 import Forecast from './forecast';
 
@@ -24,44 +23,41 @@ class FormInput extends React.Component{
       }
   }
 
-  getForecast = async(e) => {
-    try{
-    e.preventDefault();
-    const SERVER = process.env.REACT_APP_SERVER;
-    const query = {lat: this.state.location.lat, lon: this.state.location.lon};
-    const weather = await axios.get(`${SERVER}/weather/`, { params: query });
-    const weatherArray = weather.data;
-    this.setState({ list: weatherArray });
-    }
-    catch(err) {
-      console.log('error', this.setState.message);
-    }
-  }
-
+  
   getLocationInfo = async(e) => {
     try{
       e.preventDefault();
       const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_KEY}&q=${this.state.searchQuery}&format=json`;
       const location = await axios.get(url);
-      // const SERVER = process.env.REACT_APP_SERVER;
-      // const query = {lat: this.location.lat, lon: this.location.lon};
-      // const weather = await axios.get(`${SERVER}/weather/`, { params: query });
-      // const weatherArray = weather.data;
-      // this.setState({ list: weatherArray });
-    
       const locationArray = location.data;
       this.setState({ 
         location: locationArray[0], 
         displayResults: true,
-        imgSrc: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${locationArray[0].lat},${locationArray[0].lon}&zoom=11&size=1200x900` 
-    });
+        imgSrc: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${locationArray[0].lat},${locationArray[0].lon}&zoom=11&size=1200x900`
+      });
+      this.getForecast(locationArray[0]);
     }catch(err) {
-      // this.setState({
-      //   hasError: true, message: err.message
-      // });
+      this.setState({
+        hasError: true, message: err.message
+      });
       console.log('error', this.state.message);
     } 
-    this.getForecast();
+
+  }
+
+  getForecast = async(location) => {
+    try{
+      // e.preventDefault();
+      const SERVER = process.env.REACT_APP_SERVER;
+      const query = {lat: location.lat, lon: location.lon};
+      const weather = await axios.get(`${SERVER}/weather`, { params: query });
+      const weatherArray = weather.data.forecast;
+      console.log(weatherArray);
+      this.setState({ list: weatherArray });
+    }
+    catch(err) {
+      console.log('error', this.state.list);
+    }
   }
 
   render(){
