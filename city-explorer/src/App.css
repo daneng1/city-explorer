@@ -57,3 +57,12 @@
 .form-button {
   margin: 15px;
 }
+
+.dailyWeather {
+  flex-direction: row;
+  justify-content: center;
+}
+
+.collapse show {
+  flex-direction: row;
+}
