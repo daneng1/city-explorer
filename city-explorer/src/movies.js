@@ -1,13 +1,11 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import DailyWeather from './dailyWeather';
+import MovieCard from './movieCard';
 
-
-class Forecast extends React.Component{
+class Movies extends React.Component{
 
   render() {
     return(
@@ -16,15 +14,13 @@ class Forecast extends React.Component{
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="info" eventKey="0">
-                View Weather Forecast
+                View Movies from 
               </Accordion.Toggle>
             </Card.Header>
-            <Accordion.Collapse eventKey="0">
-              <CardGroup>
-                <DailyWeather key="dailyWeather"
-                  data={this.props.list}
-                  />
-              </CardGroup>
+            <Accordion.Collapse className="cardBody" eventKey="0">
+              <MovieCard key="dailyWeather"
+                data={this.props.list}
+                />
             </Accordion.Collapse>
           </Card>
         </Accordion>
@@ -33,4 +29,4 @@ class Forecast extends React.Component{
   }
 }
 
-export default Forecast;
+export default Movies;

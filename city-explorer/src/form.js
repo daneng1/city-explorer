@@ -1,12 +1,14 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Alert from './alert';
 import Map from './map';
 import Forecast from './forecast';
+import Movies from './movies';
 
 
 class FormInput extends React.Component{
@@ -19,7 +21,8 @@ class FormInput extends React.Component{
         displayResults: false,
         hasError: false,
         message: '',
-        list:[]
+        list:[],
+        movieList: []
       }
   }
 
@@ -36,6 +39,7 @@ class FormInput extends React.Component{
         imgSrc: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${locationArray[0].lat},${locationArray[0].lon}&zoom=11&size=1200x900`
       });
       this.getForecast(locationArray[0]);
+      this.getMovies();
     }catch(err) {
       this.setState({
         hasError: true, message: err.message
@@ -47,7 +51,6 @@ class FormInput extends React.Component{
 
   getForecast = async(location) => {
     try{
-      // e.preventDefault();
       const SERVER = process.env.REACT_APP_SERVER;
       const query = {lat: location.lat, lon: location.lon};
       const weather = await axios.get(`${SERVER}/weather`, { params: query });
@@ -60,22 +63,38 @@ class FormInput extends React.Component{
     }
   }
 
+  getMovies = async() => {
+    try{
+      const SERVER = process.env.REACT_APP_SERVER;
+      const searchQuery = { searchQuery: this.state.searchQuery};
+      const movies = await axios.get(`${SERVER}/movies`, { params: searchQuery });
+      console.log(movies);
+      const movieArray = movies.data.movies;
+      this.setState({ movieList: movieArray });
+    }
+    catch(err) {
+      console.log('error', err);
+    }
+  }
   render(){
-    console.log('state:', this.state.location.lon);
+    console.log('movies:', this.state.movieList);
     return(
-      <>
+      <Container  fluid="true" >
         <Form onSubmit={this.getLocationInfo}>
-          <Form.Group controlId="formBasicEmail">
+          <Form.Group className="text-center" controlId="formBasicEmail">
             <Form.Label>Enter a City to Explore</Form.Label>
             <Form.Control variant="info" className="form-control" size="lg" onChange={(e) => this.setState({ searchQuery: e.target.value })} placeholder="Enter city" />
           </Form.Group>
-          <Button className="form-button" variant="info" type="submit">
+          <Button variant="info" type="submit">
             EXPLORE!
           </Button>
         </Form>
         <Forecast 
           location={this.state.location}
           list={this.state.list}
+        />
+        <Movies
+          list={this.state.movieList}
         />
         {this.state.hasError &&
           <>
@@ -95,7 +114,7 @@ class FormInput extends React.Component{
             />
           </>
         }
-      </>
+      </Container>
     )
   }    
 }
