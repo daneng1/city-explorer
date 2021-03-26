@@ -12,12 +12,12 @@ class DailyWeather extends React.Component {
             <Card.Body>
               <Card.Title>{value.date}</Card.Title>
               <Card.Text>{value.desc}</Card.Text>
-              <Card.Text>High: {value.high}</Card.Text>
-              <Card.Text>Low: {value.low}</Card.Text>
+              <Card.Text>High: {value.high} F</Card.Text>
+              <Card.Text>Low: {value.low} F</Card.Text>
             </Card.Body>
           </Card>
         ))}
-      </> 
+      </>
     )
   }
 }
