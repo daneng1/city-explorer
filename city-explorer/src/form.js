@@ -94,6 +94,7 @@ class FormInput extends React.Component{
           dailyWeather={this.state.currentWeatherArray}
         />
         <Movies
+          city={this.state.searchQuery}
           list={this.state.movieList}
         />
         {this.state.hasError &&

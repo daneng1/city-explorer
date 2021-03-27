@@ -73,3 +73,5 @@ Finish time: _6:00____
 Actual time needed to complete: __3.25___
 
 ![](assets/IMG_3276.JPG)
+
+![](assets/IMG_3281.JPG)
