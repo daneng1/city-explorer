@@ -10,8 +10,8 @@ class DailyWeather extends React.Component {
         {this.props.data.map((value, key) => (
           <Card style={{ width: '18rem' }}>
             <Card.Body>
-              <Card.Title>{value.date}</Card.Title>
-              <Card.Text>{value.desc}</Card.Text>
+              <Card.Title>{value.time}</Card.Title>
+              <Card.Text>{value.forecast}</Card.Text>
               <Card.Text>High: {value.high} F</Card.Text>
               <Card.Text>Low: {value.low} F</Card.Text>
             </Card.Body>
