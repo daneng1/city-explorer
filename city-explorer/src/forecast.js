@@ -21,9 +21,11 @@ class Forecast extends React.Component{
             </Card.Header>
             <Accordion.Collapse eventKey="0">
               <CardGroup>
-                <DailyWeather key="dailyWeather"
-                  data={this.props.dailyWeather}
+                {this.props.dailyWeather.map((value, key) => (
+                  <DailyWeather key={key}
+                    data={value}
                   />
+                  ))}  
               </CardGroup>
             </Accordion.Collapse>
           </Card>
