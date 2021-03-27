@@ -21,7 +21,7 @@ class FormInput extends React.Component{
         displayResults: false,
         hasError: false,
         message: '',
-        list:[],
+        currentWeatherArray:[],
         movieList: []
       }
   }
@@ -54,9 +54,9 @@ class FormInput extends React.Component{
       const SERVER = process.env.REACT_APP_SERVER;
       const query = {lat: location.lat, lon: location.lon};
       const weather = await axios.get(`${SERVER}/weather`, { params: query });
-      const weatherArray = weather.data.forecast;
+      const weatherArray = weather.data;
       console.log(weatherArray);
-      this.setState({ list: weatherArray });
+      this.setState({ currentWeatherArray: weatherArray });
     }
     catch(err) {
       console.log('error', this.state.list);
@@ -69,7 +69,7 @@ class FormInput extends React.Component{
       const searchQuery = { searchQuery: this.state.searchQuery};
       const movies = await axios.get(`${SERVER}/movies`, { params: searchQuery });
       console.log(movies);
-      const movieArray = movies.data.movies;
+      const movieArray = movies.data;
       this.setState({ movieList: movieArray });
     }
     catch(err) {
@@ -77,7 +77,7 @@ class FormInput extends React.Component{
     }
   }
   render(){
-    console.log('movies:', this.state.movieList);
+    // console.log('movies:', this.state.movieList);
     return(
       <Container  fluid="true" >
         <Form onSubmit={this.getLocationInfo}>
@@ -91,7 +91,7 @@ class FormInput extends React.Component{
         </Form>
         <Forecast 
           location={this.state.location}
-          list={this.state.list}
+          dailyWeather={this.state.currentWeatherArray}
         />
         <Movies
           list={this.state.movieList}

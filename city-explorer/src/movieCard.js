@@ -13,7 +13,7 @@ class MovieCard extends React.Component {
               <Card.Img alt="movie poster" variant="top" src={value.poster} />
               <Card.Title>{value.title}</Card.Title>
               <Card.Text className="cardText">{value.overview}</Card.Text>
-              <Card.Text>Released: {value.releaseDate}</Card.Text>
+              <Card.Text>Released: {value.release_Date}</Card.Text>
             </Card.Body>
           </Card>
         ))}

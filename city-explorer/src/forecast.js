@@ -22,7 +22,7 @@ class Forecast extends React.Component{
             <Accordion.Collapse eventKey="0">
               <CardGroup>
                 <DailyWeather key="dailyWeather"
-                  data={this.props.list}
+                  data={this.props.dailyWeather}
                   />
               </CardGroup>
             </Accordion.Collapse>
