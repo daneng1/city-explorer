@@ -59,16 +59,16 @@ class FormInput extends React.Component{
       this.setState({ currentWeatherArray: weatherArray });
     }
     catch(err) {
-      console.log('error', this.state.list);
+      console.log('error', this.state.currentWeatherArray);
     }
   }
 
   getMovies = async() => {
     try{
       const SERVER = process.env.REACT_APP_SERVER;
-      const searchQuery = { searchQuery: this.state.searchQuery};
-      const movies = await axios.get(`${SERVER}/movies`, { params: searchQuery });
-      console.log(movies);
+      const query = { query: this.state.searchQuery};
+      const movies = await axios.get(`${SERVER}/movies`, { params: query });
+      console.log("Movie Results:", movies);
       const movieArray = movies.data;
       this.setState({ movieList: movieArray });
     }
@@ -94,6 +94,7 @@ class FormInput extends React.Component{
           dailyWeather={this.state.currentWeatherArray}
         />
         <Movies
+          city={this.state.searchQuery}
           list={this.state.movieList}
         />
         {this.state.hasError &&

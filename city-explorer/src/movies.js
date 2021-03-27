@@ -14,13 +14,17 @@ class Movies extends React.Component{
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="info" eventKey="0">
-                View Movies from 
+                View Movies
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse className="cardBody" eventKey="0">
-              <MovieCard key="dailyWeather"
-                data={this.props.list}
-                />
+              <>
+                {this.props.list.map((value, key) => (
+                  <MovieCard key={key}
+                    data={value}
+                  />
+                ))} 
+              </> 
             </Accordion.Collapse>
           </Card>
         </Accordion>

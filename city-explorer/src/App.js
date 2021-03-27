@@ -10,7 +10,7 @@ class City extends React.Component {
     return(
       <>
         <Container className="App" fluid="true">
-          <h1 className="header">Welcome to City Explorer</h1>
+          <h1 className="header">City Explorer</h1>
           <FormInput />
         </Container>
       </>
