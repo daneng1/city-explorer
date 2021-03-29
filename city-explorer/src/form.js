@@ -36,7 +36,7 @@ class FormInput extends React.Component{
       this.setState({ 
         location: locationArray[0], 
         displayResults: true,
-        imgSrc: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${locationArray[0].lat},${locationArray[0].lon}&zoom=11&size=1200x900`
+        imgSrc: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_KEY}&center=${locationArray[0].lat},${locationArray[0].lon}&zoom=11&size=800x800`
       });
       this.getForecast(locationArray[0]);
       this.getMovies();
@@ -79,13 +79,12 @@ class FormInput extends React.Component{
   render(){
     // console.log('movies:', this.state.movieList);
     return(
-      <Container  fluid="true" >
+      <Container  className="main-body" fluid="true" >
         <Form onSubmit={this.getLocationInfo}>
           <Form.Group className="text-center" controlId="formBasicEmail">
-            <Form.Label>Enter a City to Explore</Form.Label>
-            <Form.Control variant="info" className="form-control" size="lg" onChange={(e) => this.setState({ searchQuery: e.target.value })} placeholder="Enter city" />
+            <Form.Control variant="info" className="form-control" size="lg" onChange={(e) => this.setState({ searchQuery: e.target.value })} placeholder="Enter A City" />
           </Form.Group>
-          <Button variant="info" type="submit">
+          <Button className="explore-buttton"variant="info" type="submit">
             EXPLORE!
           </Button>
         </Form>

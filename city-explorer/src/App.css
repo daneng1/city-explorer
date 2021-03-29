@@ -1,6 +1,10 @@
 
 .App {
   text-align: center;
+  height:200vh;
+  background-size: cover;
+  background-attachment: fixed;
+
 }
 
 .App-logo {
@@ -19,8 +23,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -38,13 +42,32 @@
   }
 }
 
+.main-body {
+  width: 90vw;
+  justify-content: center;
+  margin: auto;
+}
+
 .header {
-  margin-top: 100px;
+  padding-top: 150px;
+  margin-bottom: 50px;
+  color: white;
+  align-items: center;
+  font-size: 64px;
+  text-shadow: 0px 0px 10px #040404;
 }
 
 .form-control {
-  width: 300px;
+  size: .3vw;
   justify-content: center;
+  margin: auto;
+}
+
+.city, .lat-lon {
+  color: white;
+  /* background-color: rgb(0,0,0,30%); */
+  text-shadow: 0px 0px 10px #040404;
+
 }
 
 .city {
@@ -79,4 +102,12 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.text-center {
+  justify-content: center;
+}
+
+.explore-buttton {
+  margin-bottom: 10px;
 }
